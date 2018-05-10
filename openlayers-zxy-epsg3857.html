@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OS Maps API | OpenLayers | ZXY | EPSG:3857</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css">
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.js"></script>
+<script>
+    var apiKey = 'INSERT_API_KEY_HERE';
+    var copyrightStatement = '&copy; Crown copyright and database rights ' + new Date().getFullYear() + ' Ordnance Survey.';
+
+    var map = new ol.Map({
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.XYZ({
+                    url: 'https://api2.ordnancesurvey.co.uk/mapping_api/v1/service/zxy/EPSG:3857/Outdoor 3857/{z}/{x}/{y}.png?key=' + apiKey,
+                    attributions: new ol.Attribution({
+                        html: copyrightStatement
+                    })
+                })
+            })
+        ],
+        controls: ol.control.defaults({
+            attributionOptions: {
+                collapsible: false
+            }
+        }),
+        target: 'map',
+        view: new ol.View({
+            projection: 'EPSG:3857',
+            center: ol.proj.fromLonLat([ -1.485, 52.567 ]),
+            minZoom: 7,
+            maxZoom: 18,
+            zoom: 10
+        })
+    });
+  
+</script>
+
+</body>
+</html>
