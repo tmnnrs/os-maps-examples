@@ -51,11 +51,12 @@
             }),
             target: 'map',
             view: new ol.View({
-                projection: 'EPSG:27700',
+                projection: options.projection,
+                resolutions: options.tileGrid.getResolutions(),
                 center: [ 435000, 296700 ],
-                minZoom: 7,
-                maxZoom: 18,
-                zoom: 10
+                minZoom: 0,
+                maxZoom: 13,
+                zoom: 3
             })
         });
     });
